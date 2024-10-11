@@ -1,0 +1,257 @@
+/* resources/css/app.css */
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #f4f4f4; */
+    margin: 0;
+    padding: 0px;
+    margin-top: 60px; /* Prevent overlap with fixed menu */
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.main-container{
+    display: flex;
+    max-width: 30%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+    position: fixed; /* Fix the menu at the top */
+    top: 0; /* Position at the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Flex layout for desktop */
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.menu a:hover {
+    background-color: #575757;
+}
+
+.menu a.active {
+    background-color: #007bff; /* Active background color */
+    color: white; /* Active text color */
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+
+
+.main-container form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.main-container form .inner-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.main-container form .inner-form .form-group select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.profile-details{
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+ul{
+    list-style: none;
+}
+.main-container form .inner-form .form-group input,.main-container form .inner-form .form-group textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 20px);
+}
+
+input[type="submit"],
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+.products-container{
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+table{
+    text-align: center;
+}
+.actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.prod-details{
+    margin-top: 30px;
+}
+.success-msg{
+    color:#4cae4c;
+}
+.errors{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error{
+    color: #c82333;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff; /* Bootstrap primary color */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+.container form iinput[type="submit"],
+button {
+    width: auto;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #007bff;
+}
+.logout-btn {
+    background-color: #dc3545; /* Bootstrap Danger Color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it inline-block */
+    margin-top: 10px; /* Space above the button */
+}
+
+.logout-btn:hover {
+    background-color: #c82333; /* Darker shade on hover */
+}
+footer {
+    background-color: #333; /* Dark background */
+    color: white; /* Text color */
+    padding: 20px; /* Padding around footer */
+    text-align: center; /* Center the text */
+}
+
+.footer-content {
+    max-width: 800px; /* Max width for content */
+    margin: 0 auto; /* Center footer content */
+}
+
+.footer-links {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 10px 0 0; /* Margin on top only */
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center links */
+}
+
+.footer-links li {
+    margin: 0 15px; /* Space between links */
+}
+
+.footer-links a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.footer-links a:hover {
+    color: #5cb85c; /* Change color on hover */
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+    .main-container{
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .menu {
+        display: none; /* Hide menu by default */
+        flex-direction: column; /* Stack items vertically */
+        width: 100%; /* Full width */
+    }
+    .menu li {
+        margin: 10px auto;
+    }
+    .menu.active {
+        display: flex; /* Show menu when active */
+    }
+    .menu-toggle {
+        display: flex; /* Show hamburger menu */
+    }
+    .profile-details{
+        width: auto;
+    }
+}
