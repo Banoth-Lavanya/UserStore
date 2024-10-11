@@ -16,7 +16,7 @@ use App\Http\Controllers\StoreController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('users.register');
 });
 
 
