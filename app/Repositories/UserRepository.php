@@ -20,13 +20,6 @@ class UserRepository
     {
         return User::create($data);
     }
-
-    public function update($id, array $data)
-    {
-        $user = $this->find($id);
-        $user->update($data);
-        return $user;
-    }
     public function delete($id)
     {
         $user = $this->find($id);
@@ -44,6 +37,22 @@ class UserRepository
     public function findByEmail($email)
     {
         return User::where('email', $email)->first();
+    }
+    public function findById($id)
+    {
+        return User::find($id);
+    }
+    public function updateProfile($user, array $data)
+    {
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+
+    try {
+        return $user->save();
+    } catch (\Exception $e) {
+        // Log the error or handle it as needed
+        return false;
+    }
     }
 }
 

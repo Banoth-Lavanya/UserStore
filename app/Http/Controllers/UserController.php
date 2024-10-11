@@ -122,6 +122,31 @@ class UserController extends Controller
 
         return view('users.customers', compact('customers'));
     }
+    public function editProfile()
+{
+    $user = Auth::user(); // Get the authenticated user
+    return view('users.editProfile', compact('user')); // Pass user data to the view
+}
+
+public function updateProfile(Request $request)
+{
+    $user = Auth::user(); // Get the authenticated user
+
+    // Validate the request
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+    ]);
+
+    // Use the UserRepository to update the user
+    if ($this->userRepo->updateProfile($user, $request->only(['name', 'email']))) {
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
+    }
+
+    return redirect()->route('profile.show')->withErrors(['error' => 'Failed to update profile.']);
+}
+
+
 
 }
 

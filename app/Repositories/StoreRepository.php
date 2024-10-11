@@ -25,12 +25,12 @@ class StoreRepository
         return Store::create($data);
     }
 
-    public function update($id, array $data)
-    {
-        $product = $this->find($id);
-        $product->update($data);
-        return $product;
-    }
+    // public function update($id, array $data)
+    // {
+    //     $product = $this->find($id);
+    //     $product->update($data);
+    //     return $product;
+    // }
     public function getUserStores($userId)
     {
         return Store::where('userId', $userId)->get(); // Fetch stores associated with the user
@@ -41,6 +41,24 @@ class StoreRepository
         $product = $this->find($id);
         $product->delete();
     }
+    public function update($id, array $data)
+    {
+    $product = Store::find($id);
+    
+    if (!$product) {
+        return null; // or throw an exception
+    }
+
+    $product->fill($data); // Fill the model with the new data
+    $product->save(); // Save changes to the database
+    
+    return $product;
+}
+public function getAllProducts()
+{
+    return Store::all(); // Fetch all products from the database
+}
+
 }
 
 ?>

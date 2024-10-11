@@ -51,19 +51,48 @@ class StoreController extends Controller
         return redirect()->route('products.index')->with('success', 'Product added successfully!');
          //return response()->json($product, 201);
     }
-
+    public function edit($id)
+    {
+        // Check if the user is authenticated and is an admin
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return redirect()->route('products.index')->with('warning', 'Unauthorized action.');
+        }
+    
+        // Retrieve the product using the StoreRepository
+        $product = $this->storeRepo->find($id);
+        
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'Product not found.');
+        }
+    
+        return view('store.edit', compact('product'));
+    }
+    
     public function update(Request $request, $id)
     {
+        // Check if the user is authenticated and is an admin
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+    
+        // Validate the incoming request data
         $data = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'description' => 'sometimes|required|string',
-            'price' => 'sometimes|required|numeric',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
         ]);
-
+    
+        // Update the product using the repository
         $product = $this->storeRepo->update($id, $data);
-        return response()->json($product);
+    
+        // Check if the update was successful
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'Product not found or update failed.');
+        }
+    
+        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
-
+    
     public function destroy($id)
     {
         // Find the product
@@ -78,6 +107,12 @@ class StoreController extends Controller
         $this->storeRepo->delete($id);
         return response()->json(['message' => 'Product deleted successfully']);
     }
+    public function manage()
+{
+    $products = $this->storeRepo->getAllProducts(); // Implement this in your StoreRepository
+    return view('store.manage', compact('products'));
+}
+
     
 }
 

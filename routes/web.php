@@ -39,10 +39,17 @@ Route::middleware(['auth.session'])->group(function () {
     Route::delete('products/{id}', [StoreController::class, 'destroy'])->name('products.destroy');
     Route::get('profile', [UserController::class, 'getProfile'])->name('profile.show');
     Route::get('admin/customers', [UserController::class, 'listCustomers'])->name('admin.customers');
-       // Route::post('profile', [UserController::class, 'updateProfile'])->name('profile.update');
+    // Update profile route
     
-    
+    Route::get('profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
+    Route::post('profile/updateProfile', [UserController::class, 'updateProfile'])->name('profile.update');    
+    Route::get('products/manage', [StoreController::class, 'manage'])->name('products.manage');
 });
+
+Route::middleware(['auth.session', 'admin'])->group(function () {
+    Route::get('products/{id}/edit', [StoreController::class, 'edit'])->name('products.edit');
+});
+
 
 
 //Route::post('/logout', [UserController::class, 'logout']);
