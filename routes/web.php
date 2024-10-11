@@ -43,7 +43,7 @@ Route::middleware(['auth.session'])->group(function () {
     
     Route::get('profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::post('profile/updateProfile', [UserController::class, 'updateProfile'])->name('profile.update');    
-    Route::get('products/manage', [StoreController::class, 'manage'])->name('products.manage');
+   
 });
 
 Route::middleware(['auth.session', 'admin'])->group(function () {

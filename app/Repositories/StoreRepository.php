@@ -54,11 +54,6 @@ class StoreRepository
     
     return $product;
 }
-public function getAllProducts()
-{
-    return Store::all(); // Fetch all products from the database
-}
-
 }
 
 ?>

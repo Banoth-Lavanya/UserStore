@@ -107,11 +107,6 @@ class StoreController extends Controller
         $this->storeRepo->delete($id);
         return response()->json(['message' => 'Product deleted successfully']);
     }
-    public function manage()
-{
-    $products = $this->storeRepo->getAllProducts(); // Implement this in your StoreRepository
-    return view('store.manage', compact('products'));
-}
 
     
 }
